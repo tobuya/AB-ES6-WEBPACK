@@ -1,13 +1,11 @@
-import _ from 'lodash';
+import { DateTime } from "luxon";
 import './index.css';
 
- function component() {
-   const element = document.createElement('div');
+const dateHolder = document.getElementById('luxon-date');
 
-   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-   element.classList.add('hello');
+const displayDate = () => {
+    const now = DateTime.now().toLocaleString(DateTime.DATETIME_MED);
+    dateHolder.innerHTML = now;
+}
 
-   return element;
- }
-
- document.body.appendChild(component());
+window.addEventListener('load', displayDate);
