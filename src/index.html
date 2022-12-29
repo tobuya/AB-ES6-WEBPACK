@@ -25,13 +25,54 @@
         <p id="luxon-date"></p>
     </header>
     <main>
-        <section id="book-list"></section>
-        <section id="add-new-book"></section>
-        <section id="contact-info"></section>
+        <section id="book-list">
+            <h2>All awesome books</h2>
+            <table>
+                <tr>
+                    <td>"Title" by author</td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td>"Title 2" by author</td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td>"Title 3" by author</td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td>"Title 4" by author</td>
+                    <td><button>Remove</button></td>
+                </tr>
+            </table>
+        </section>
+        <section id="add-new-book">
+            <h2>Add a new book</h2>
+            <form action="#">
+                <label for="title">
+                    <input id="title" type="text" placeholder="Title" />
+                </label>
+                <label for="author">
+                    <input id="author" type="text" placeholder="Author" />
+                </label>
+                <button id="add-button" type="submit">Add</button>
+            </form>
+        </section>
+        <section id="contact-info">
+            <h2>Contact information</h2>
+            <div id="contact-info-div">
+                <p>Do you have any questions or just want to say "Hello"? <br>You can reach out to us!</p>
+                <ul>
+                    <li>Our email: mail@mail.com</li>
+                    <li>Our phone number: 0043588534422</li>
+                    <li>Our address: Streetname 22, 84503 City, Country</li>
+                </ul>
+            </div>
+        </section>
     </main>
     <footer>
-        <p></p>
-        <p></p>
+        <p>Copyright</p>
+        <p>...</p>
     </footer>
 </body>
 </html>
