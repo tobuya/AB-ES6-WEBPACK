@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import './index.css';
+import './style.css';
 import Book from './modules/book-list.js';
 
 const dateHolder = document.getElementById('luxon-date');
