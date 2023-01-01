@@ -1,34 +1,59 @@
-import { mainSection, listSection, addNewBookSection, contactSection } from "../index.js";
+export default class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
 
-export const showBookList = () => {
-    const content = mainSection.firstChild;
-    contactSection.style.color = 'black';
-    listSection.style.color = 'blue';
-    addNewBookSection.style.color = 'black';
-    const bookList = document.createElement('section');
-    bookList.id = 'book-list';
-    bookList.innerHTML = `
-    <h2>All awesome books</h2>
-    <table>
-        <tr>
-            <td>"Title" by author</td>
-            <td><button>Remove</button></td>
-        </tr>
-        <tr>
-            <td>"Title 2" by author</td>
-            <td><button>Remove</button></td>
-        </tr>
-        <tr>
-            <td>"Title 3" by author</td>
-            <td><button>Remove</button></td>
-        </tr>
-        <tr>
-            <td>"Title 4" by author</td>
-            <td><button>Remove</button></td>
-        </tr>
-    </table>
-    `;
-    mainSection.replaceChild(bookList, content);
-};
+  static displayBooks() {
+    const books = Book.getBooksFromStore();
+    books.forEach((book) => Book.addBookToList(book));
+  }
 
-window.addEventListener('load', showBookList);
+  static addBookToList(book) {
+    const listContainer = document.getElementById('list-container');
+    const singleBook = document.createElement('tr');
+    singleBook.innerHTML = `
+        <td>"${book.title}" by ${book.author}</td>
+        <td><button class="delete">Remove</button></td>
+        `;
+    listContainer.appendChild(singleBook);
+  }
+
+  static deleteBook(el) {
+    if (el.classList.contains('delete')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
+  static clearInputFields() {
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+  }
+
+  static getBooksFromStore() {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+    return books;
+  }
+
+  static addBookToStore(book) {
+    const books = Book.getBooksFromStore();
+    books.push(book);
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+
+  static removeBookFromList(author) {
+    const books = Book.getBooksFromStore();
+    let index = 0;
+    books.filter((book) => {
+      if (book.author !== author) { index = +1; }
+      return books;
+    });
+    books.splice(index, 1);
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+}
